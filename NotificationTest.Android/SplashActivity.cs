@@ -35,6 +35,14 @@ namespace NotificationTest.Droid
         protected override void OnResume()
         {
             base.OnResume();
+
+            var mainIntent = new Intent(Application.Context, typeof(MainActivity));
+            if (Intent.Extras != null)
+            {
+                mainIntent.PutExtras(Intent.Extras);
+            }
+            StartActivity(mainIntent);
+
             Task startupWork = new Task(() => { SimulateStartup(); });
             startupWork.Start();
         }
